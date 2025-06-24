@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+client/build/
+
+# OS + Editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependency Lock files (optional for teams using only npm or yarn)
+yarn.lock
+package-lock.json
