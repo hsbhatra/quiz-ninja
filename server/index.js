@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -17,6 +19,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('QuizNinja API running');
 });
+
+app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
 
 // DB Connect & Start Server
 const PORT = process.env.PORT;
