@@ -38,8 +38,49 @@ export const createQuiz = async (req, res) => {
       quiz,
     });
   } catch (error) {
-    console.error('Create Quiz Error:', error);
-    res.status(500).json({ message: 'Server error while creating quiz' });
+    console.error('Create Quiz Error:', error.message);
+    res.status(500).json({ message: error.message || 'Server error' });
   }
 };
+
+// =============================
+// @desc    Get all quizzes (optionally filter by category)
+// @route   GET /quiz
+// =============================
+export const getAllQuizzes = async (req, res) => {
+  try {
+    const category = req.query.category;
+    const filter = category ? { category } : {};
+
+    const quizzes = await Quiz.find(filter).select('title category createdAt');
+    res.status(200).json(quizzes);
+  } catch (err) {
+    console.error('Get Quizzes Error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// =============================
+// @desc    Get quiz by ID
+// @route   GET /quiz/:id
+// =============================
+export const getQuizById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: 'Quiz ID is required' });
+    }
+    const quiz = await Quiz.findById(id);
+    if (!quiz) {
+      return res.status(404).json({ message: `Quiz not found with id: ${id}` });
+    }
+    res.status(200).json(quiz);
+  } catch (err) {
+    console.error('Get Quiz By ID Error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 

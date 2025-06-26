@@ -24,7 +24,7 @@ const quizSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ['Tech', 'Math', 'GK'] // Fixed quiz categories
+      enum: ['Tech', 'Math', 'GK', 'Science', 'Reasoning'] // Fixed quiz categories, can be expanded
     },
     questions: [questionSchema],
     createdBy: {
