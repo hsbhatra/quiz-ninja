@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import quizRoutes from './routes/quizRoutes.js';
+import quizPlayRoutes from './routes/quizPlayRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/quiz', quizRoutes);
+app.use('/quiz/play', quizPlayRoutes);
 
 // DB Connect & Start Server
 const PORT = process.env.PORT;

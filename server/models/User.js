@@ -35,6 +35,7 @@ const userSchema = new mongoose.Schema({
         ref: 'Quiz'
       },
       score: Number,
+      total: Number,
       date: {
         type: Date,
         default: Date.now
